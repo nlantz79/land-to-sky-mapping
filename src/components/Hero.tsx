@@ -1,4 +1,5 @@
 import heroImage from "@/assets/hero-aerial.jpg";
+import logo from "@/assets/logo.png";
 
 const Hero = () => {
   return (
@@ -14,17 +15,22 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container-custom px-4 pt-20 pb-16 md:pt-32 md:pb-24">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-cream leading-tight mb-6 animate-fade-up">
-            Professional Drone Mapping, Survey Data & Aerial Media
+          <img 
+            src={logo} 
+            alt="3 Fields Aerial" 
+            className="h-24 md:h-32 w-auto mx-auto mb-8 brightness-0 invert animate-fade-up" 
+          />
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-cream leading-tight mb-6 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+            Professional Drone Mapping & Aerial Media
           </h1>
-          <p className="text-xl md:text-2xl text-cream/90 mb-4 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+          <p className="text-xl md:text-2xl text-cream/90 mb-4 animate-fade-up" style={{ animationDelay: "0.2s" }}>
             Serving All of New Brunswick
           </p>
-          <p className="text-lg text-cream/75 max-w-2xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          <p className="text-lg text-cream/75 max-w-2xl mx-auto mb-10 animate-fade-up" style={{ animationDelay: "0.3s" }}>
             High-precision orthomosaics, 3D terrain models, elevation data, and professional aerial photography for landowners, farmers, builders, and professionals across the province.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up" style={{ animationDelay: "0.4s" }}>
             <a href="#contact" className="btn-hero-primary">
               Request a Quote
             </a>

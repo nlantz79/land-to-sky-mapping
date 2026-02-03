@@ -67,15 +67,15 @@ const Services = () => {
       <div className="container-custom">
         {/* Mapping Services */}
         <div className="mb-20">
-          <div className="text-center mb-12">
+        <div className="text-center mb-12">
             <p className="text-sm font-semibold text-accent uppercase tracking-wider mb-2">
-              Survey-Grade Data
+              Geospatial Data
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Drone Mapping & Survey Data
+              Drone Mapping & Data Products
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Professional-grade geospatial data products for land assessment, planning, and decision-making.
+              Professional geospatial data products for land assessment, planning, and visualization.
             </p>
           </div>
 
