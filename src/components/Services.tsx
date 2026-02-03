@@ -14,50 +14,50 @@ const mappingServices = [
   {
     icon: Map,
     title: "Orthomosaics (Orthophotos)",
-    description: "High-resolution, georeferenced, map-accurate top-down imagery for precise measurements and analysis.",
+    description: "High-resolution, georeferenced, map-accurate top-down imagery.",
   },
   {
     icon: Box,
     title: "3D Models",
-    description: "Textured 3D terrain and object models for planning, visualization, and stakeholder presentations.",
+    description: "Textured 3D terrain and object models for planning and visualization.",
   },
   {
     icon: Layers,
     title: "Point Clouds",
-    description: "Classified, georeferenced 3D data sets compatible with CAD and GIS software.",
+    description: "Classified, georeferenced 3D data sets.",
   },
   {
     icon: Mountain,
-    title: "Digital Elevation Models",
-    description: "DSM includes ground, buildings, and vegetation. DTM provides bare-earth terrain data.",
+    title: "Digital Elevation Models (DEMs)",
+    description: "DSM: ground + buildings + vegetation. DTM: bare-earth terrain only.",
   },
   {
     icon: TrendingUp,
-    title: "Contour Lines",
-    description: "Accurate topographic contour lines derived from elevation data for engineering and planning.",
+    title: "Contours",
+    description: "Accurate topographic contour lines from elevation data.",
   },
   {
     icon: Leaf,
-    title: "Plant Health Mapping (NDVI)",
-    description: "Multispectral analysis to assess crop and vegetation health, identify stress areas, and optimize management.",
+    title: "Plant Health & Vegetation Mapping (NDVI)",
+    description: "Multispectral analysis for crop and vegetation health.",
   },
 ];
 
 const mediaServices = [
   {
     icon: Camera,
-    title: "Aerial Photography",
-    description: "Professional drone photography for properties, events, and promotional materials.",
-  },
-  {
-    icon: Video,
-    title: "Aerial Videography",
-    description: "Cinematic aerial video for real estate, tourism, and brand storytelling.",
+    title: "Drone Photography & Videography",
+    description: "Professional aerial photos and cinematic video for any project.",
   },
   {
     icon: Home,
-    title: "Real Estate & 3D Tours",
-    description: "Property aerials and interactive 3D virtual tours for listings and marketing.",
+    title: "Real Estate Aerials & 3D Tours",
+    description: "Property aerials and interactive 3D virtual tours for listings.",
+  },
+  {
+    icon: Video,
+    title: "Promotional & Tourism Visuals",
+    description: "Compelling visuals for tourism, camps, Airbnbs, brands, and events.",
   },
 ];
 
@@ -72,10 +72,10 @@ const Services = () => {
               Geospatial Data
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Drone Mapping & Data Products
+              Drone Mapping & Survey Data
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Professional geospatial data products for land assessment, planning, and visualization.
+              Professional-grade geospatial data for land assessment, planning, and visualization.
             </p>
           </div>
 
