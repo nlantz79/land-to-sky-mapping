@@ -1,45 +1,59 @@
 import { useState } from "react";
-import { Send } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { Send, CheckCircle } from "lucide-react";
 
 const ContactForm = () => {
-  const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    location: "",
-    projectType: "",
-    acreage: "",
-    message: "",
-  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
-    toast({
-      title: "Message Sent",
-      description: "Thank you for your inquiry. We'll be in touch within 24 hours.",
-    });
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/info@3fieldsaerial.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(Object.fromEntries(formData))
+      });
 
-    setFormData({
-      name: "",
-      email: "",
-      location: "",
-      projectType: "",
-      acreage: "",
-      message: "",
-    });
-    setIsSubmitting(false);
+      if (response.ok) {
+        setIsSubmitted(true);
+        form.reset();
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  if (isSubmitted) {
+    return (
+      <section id="contact" className="section-padding bg-background">
+        <div className="container-custom">
+          <div className="max-w-2xl mx-auto text-center py-16">
+            <CheckCircle className="w-16 h-16 text-primary mx-auto mb-6" />
+            <h2 className="text-3xl font-bold text-foreground mb-4">Thank You!</h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              Your inquiry has been sent successfully. We'll be in touch within 24 hours.
+            </p>
+            <button
+              onClick={() => setIsSubmitted(false)}
+              className="px-6 py-3 bg-primary text-primary-foreground rounded-md font-semibold hover:bg-primary/90 transition-colors"
+            >
+              Send Another Inquiry
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="contact" className="section-padding bg-background">
@@ -58,6 +72,7 @@ const ContactForm = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
+            <input type="hidden" name="_subject" value="New Inquiry from 3 Fields Aerial Website" />
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
@@ -68,8 +83,6 @@ const ContactForm = () => {
                   id="name"
                   name="name"
                   required
-                  value={formData.name}
-                  onChange={handleChange}
                   className="w-full px-4 py-3 bg-card border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
                   placeholder="Your name"
                 />
@@ -83,8 +96,6 @@ const ContactForm = () => {
                   id="email"
                   name="email"
                   required
-                  value={formData.email}
-                  onChange={handleChange}
                   className="w-full px-4 py-3 bg-card border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
                   placeholder="your@email.com"
                 />
@@ -101,8 +112,6 @@ const ContactForm = () => {
                   id="location"
                   name="location"
                   required
-                  value={formData.location}
-                  onChange={handleChange}
                   className="w-full px-4 py-3 bg-card border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
                   placeholder="City, town, or region"
                 />
@@ -115,18 +124,16 @@ const ContactForm = () => {
                   id="projectType"
                   name="projectType"
                   required
-                  value={formData.projectType}
-                  onChange={handleChange}
                   className="w-full px-4 py-3 bg-card border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
                 >
                   <option value="">Select project type</option>
-                  <option value="mapping">Mapping & Survey Data</option>
-                  <option value="photography">Aerial Photography</option>
-                  <option value="videography">Aerial Videography</option>
-                  <option value="real-estate">Real Estate Media</option>
-                  <option value="inspection">Inspection / Documentation</option>
-                  <option value="agriculture">Agricultural / NDVI</option>
-                  <option value="other">Other</option>
+                  <option value="Mapping & Data Products">Mapping & Data Products</option>
+                  <option value="Aerial Photography">Aerial Photography</option>
+                  <option value="Aerial Videography">Aerial Videography</option>
+                  <option value="Real Estate Media">Real Estate Media</option>
+                  <option value="Inspection / Documentation">Inspection / Documentation</option>
+                  <option value="Agricultural / NDVI">Agricultural / NDVI</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
             </div>
@@ -139,8 +146,6 @@ const ContactForm = () => {
                 type="text"
                 id="acreage"
                 name="acreage"
-                value={formData.acreage}
-                onChange={handleChange}
                 className="w-full px-4 py-3 bg-card border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
                 placeholder="e.g., 50 acres, 2 hectares, single property"
               />
@@ -154,8 +159,6 @@ const ContactForm = () => {
                 id="message"
                 name="message"
                 rows={4}
-                value={formData.message}
-                onChange={handleChange}
                 className="w-full px-4 py-3 bg-card border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors resize-none"
                 placeholder="Tell us more about what you need..."
               />
